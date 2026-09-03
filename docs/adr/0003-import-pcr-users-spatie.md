@@ -1,0 +1,3 @@
+# Import PCR users into Spatie session auth
+
+APMS auth is Laravel session + Blade + Spatie Permission, not NextAuth and not the PCR `user` table as the Eloquent users table. Users are imported from `arka_pcr_new.user` (username, bcrypt password hash, full_name, email, is_active) into Spatie `users`, keeping `username` as login and a `pcr_user_id` map. Email is optional. Project scope copies `user_project`; `000H` is all sites. Role names stay the PCR job roles (`administrator`, `plant_foreman`, …) assigned via Spatie; DMBD capabilities are extra permissions on those roles, not a second role taxonomy.

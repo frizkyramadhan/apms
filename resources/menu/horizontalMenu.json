@@ -1,0 +1,50 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "dmbd-dashboard"
+    },
+    {
+      "url": "dmbd/daily",
+      "name": "Daily Monitoring",
+      "icon": "menu-icon tf-icons ti ti-list",
+      "slug": "dmbd-daily"
+    },
+    {
+      "url": "dmbd/history",
+      "name": "History Breakdown",
+      "icon": "menu-icon tf-icons ti ti-history",
+      "slug": "dmbd-history"
+    },
+    {
+      "url": "dmbd/units",
+      "name": "Master Unit",
+      "icon": "menu-icon tf-icons ti ti-truck",
+      "slug": "dmbd-units"
+    },
+    {
+      "name": "User Management",
+      "icon": "menu-icon tf-icons ti ti-users",
+      "slug": ["users.", "roles.", "permissions."],
+      "submenu": [
+        {
+          "url": "users",
+          "name": "User",
+          "slug": "users.index"
+        },
+        {
+          "url": "roles",
+          "name": "Role",
+          "slug": "roles.index"
+        },
+        {
+          "url": "permissions",
+          "name": "Permission",
+          "slug": "permissions.index"
+        }
+      ]
+    }
+  ]
+}

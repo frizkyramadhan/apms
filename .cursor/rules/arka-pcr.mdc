@@ -1,0 +1,10 @@
+---
+description: arka-pcr means the arka-pcr-new workspace, not another PCR repo
+alwaysApply: true
+---
+
+# arka-pcr = arka-pcr-new
+
+When the user says **arka-pcr**, they mean the Next.js PCR app at `C:\laragon\www\arka-pcr-new` (this machine's sibling workspace). Use that tree as the source of truth for PCR UI, APIs, and Fleet cache behaviour.
+
+Do not look in other PCR folders unless they name a different path.

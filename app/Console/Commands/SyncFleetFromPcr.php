@@ -10,7 +10,7 @@ class SyncFleetFromPcr extends Command
 {
     protected $signature = 'pcr:sync-fleet';
 
-    protected $description = 'Copy fleet_equipment_cache from arka_pcr_new into apms';
+    protected $description = 'Bootstrap-only: copy fleet_equipment_cache from PCR MySQL. Prefer fleet:sync (ARK Fleet is master).';
 
     public function handle(): int
     {

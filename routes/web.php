@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FleetSyncController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('dmbd-dashboard');
     Route::get('/dmbd/daily', DailyMonitoringController::class)->name('dmbd-daily');
     Route::get('/dmbd/history', HistoryController::class)->name('dmbd-history');
+    Route::get('/dmbd/units/data', [UnitController::class, 'data'])->name('dmbd-units.data');
     Route::get('/dmbd/units', [UnitController::class, 'index'])->name('dmbd-units');
 
     Route::get('users/data', [UserController::class, 'data'])->name('users.data');
@@ -33,4 +35,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('permissions/data', [PermissionController::class, 'data'])->name('permissions.data');
     Route::resource('permissions', PermissionController::class)->except(['create', 'edit']);
+
+    Route::post('/fleet/sync', FleetSyncController::class)->name('fleet.sync');
 });

@@ -21,11 +21,11 @@ Modul status operasional unit: Ready, Breakdown, Stand by; KPI MTTR/MTBF; Daily 
 _Avoid_: Fleet unitStatus (ACTIVE / IN-ACTIVE / SCRAP / SOLD)
 
 **Unit**:
-Alat berat yang diidentifikasi dari ARK-Fleet (equipment id, unit no, model, project/site). Identitas master dari Fleet; status operasional DMBD dimiliki APMS.
-_Avoid_: Vehicle (kecuali UI legacy), Equipment sebagai sinonim bebas tanpa Fleet id
+Alat berat yang diidentifikasi dari ARK-Fleet (equipment id, unit no, model, project/site). Identitas master dari Fleet; APMS menyimpan salinan di `fleet_equipment_cache` (+ `fleet_model_cache`) lewat `fleet:sync`. Status operasional DMBD dimiliki APMS.
+_Avoid_: Vehicle (kecuali UI legacy), Equipment sebagai sinonim bebas tanpa Fleet id; PCR sebagai master unit
 
 **Site / Project**:
-Kode lokasi tambang (`projectCode` / `project_id` dari Fleet). Scope akses user dan filter dashboard.
+Kode lokasi tambang (`project_code` dari Fleet). Daftar master dari `PROJECTS_API_URL`; fallback distinct `project_code` di cache. Scope akses user (`user_project`, sentinel `000H`) memfilter unit/project.
 _Avoid_: Plant sebagai sinonim site (Plant = organisasi maintenance)
 
 **Operational Status**:

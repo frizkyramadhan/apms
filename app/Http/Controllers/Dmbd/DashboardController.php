@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FleetUnit;
 use App\Models\OperationalEvent;
 use App\Support\BdAges;
+use App\Support\FleetCache;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -41,11 +42,7 @@ class DashboardController extends Controller
             })
             ->when($status !== '', fn ($rows) => $rows->where('status', $status)->values());
 
-        $sites = FleetUnit::query()
-            ->when(! $user->seesAllSites(), fn ($q) => $q->whereIn('project_code', $user->projectCodes() ?: ['']))
-            ->distinct()
-            ->orderBy('project_code')
-            ->pluck('project_code');
+        $sites = app(FleetCache::class)->codesForFilter($user);
 
         $counts = [
             'total' => $units->count(),

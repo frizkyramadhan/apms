@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FleetUnit;
 use App\Models\User;
+use App\Support\FleetCache;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -172,14 +172,9 @@ class UserController extends Controller
 
     private function formPayload(): array
     {
-        $sites = FleetUnit::query()->distinct()->orderBy('project_code')->pluck('project_code');
-        if (! $sites->contains('000H')) {
-            $sites = $sites->prepend('000H');
-        }
-
         return [
             'roles' => Role::orderBy('name')->pluck('name'),
-            'sites' => $sites,
+            'sites' => app(FleetCache::class)->codesForUserForm(),
         ];
     }
 }
